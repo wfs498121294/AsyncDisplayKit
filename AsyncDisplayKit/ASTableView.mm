@@ -427,6 +427,17 @@ static NSString * const kCellReuseIdentifier = @"_ASTableViewCell";
   return visibleNodes;
 }
 
+- (void)performBatchAnimated:(BOOL)animated updates:(void (^)())updateBlock completion:(void (^)(BOOL))completion
+{
+  ASDisplayNodeAssertMainThread();
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+  [self beginUpdates];
+  updateBlock();
+  [self endUpdatesAnimated:animated completion:completion];
+#pragma clang diagnostic pop
+}
+
 - (void)beginUpdates
 {
   ASDisplayNodeAssertMainThread();

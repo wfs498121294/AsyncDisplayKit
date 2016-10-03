@@ -132,34 +132,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)relayoutItems;
 
-/**
- *  begins a batch of insert, delete reload and move operations. This method must be called from the main thread.
- */
-- (void)beginUpdates;
-
-/**
- *  Concludes a series of method calls that insert, delete, select, or reload rows and sections of the table view, with animation enabled and no completion block.
- *  You call this method to bracket a series of method calls that begins with beginUpdates and that consists of operations
- *  to insert, delete, select, and reload rows and sections of the table view. When you call endUpdates, ASTableView begins animating
- *  the operations simultaneously. This method is must be called from the main thread. It's important to remember that the ASTableView will
- *  be processing the updates asynchronously after this call is completed.
- */
-- (void)endUpdates;
-
-/**
- *  Concludes a series of method calls that insert, delete, select, or reload rows and sections of the table view.
- *  You call this method to bracket a series of method calls that begins with beginUpdates and that consists of operations 
- *  to insert, delete, select, and reload rows and sections of the table view. When you call endUpdates, ASTableView begins animating
- *  the operations simultaneously. This method is must be called from the main thread. It's important to remember that the ASTableView will
- *  be processing the updates asynchronously after this call and are not guaranteed to be reflected in the ASTableView until
- *  the completion block is executed.
- *
- *  @param animated   NO to disable all animations.
- *  @param completion A completion handler block to execute when all of the operations are finished. This block takes a single
- *                    Boolean parameter that contains the value YES if all of the related animations completed successfully or
- *                    NO if they were interrupted. This parameter may be nil. If supplied, the block is run on the main thread.
- */
-- (void)endUpdatesAnimated:(BOOL)animated completion:(void (^ _Nullable)(BOOL completed))completion;
+- (void)performBatchAnimated:(BOOL)animated updates:(__attribute((noescape)) void(^)())updateBlock completion:(nullable void(^)(BOOL finished))completion;
 
 /**
  *  Blocks execution of the main thread until all section and row updates are committed. This method must be called from the main thread.
@@ -312,6 +285,38 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface ASTableView (Deprecated)
+
+/**
+ *  begins a batch of insert, delete reload and move operations. This method must be called from the main thread.
+ */
+- (void)beginUpdates ASDISPLAYNODE_DEPRECATED;
+
+/**
+ *  Concludes a series of method calls that insert, delete, select, or reload rows and sections of the table view, with animation enabled and no completion block.
+ *  You call this method to bracket a series of method calls that begins with beginUpdates and that consists of operations
+ *  to insert, delete, select, and reload rows and sections of the table view. When you call endUpdates, ASTableView begins animating
+ *  the operations simultaneously. This method is must be called from the main thread. It's important to remember that the ASTableView will
+ *  be processing the updates asynchronously after this call is completed.
+ */
+- (void)endUpdates ASDISPLAYNODE_DEPRECATED;
+
+/**
+ *  Concludes a series of method calls that insert, delete, select, or reload rows and sections of the table view.
+ *  You call this method to bracket a series of method calls that begins with beginUpdates and that consists of operations
+ *  to insert, delete, select, and reload rows and sections of the table view. When you call endUpdates, ASTableView begins animating
+ *  the operations simultaneously. This method is must be called from the main thread. It's important to remember that the ASTableView will
+ *  be processing the updates asynchronously after this call and are not guaranteed to be reflected in the ASTableView until
+ *  the completion block is executed.
+ *
+ *  @param animated   NO to disable all animations.
+ *  @param completion A completion handler block to execute when all of the operations are finished. This block takes a single
+ *                    Boolean parameter that contains the value YES if all of the related animations completed successfully or
+ *                    NO if they were interrupted. This parameter may be nil. If supplied, the block is run on the main thread.
+ */
+- (void)endUpdatesAnimated:(BOOL)animated completion:(void (^ _Nullable)(BOOL completed))completion ASDISPLAYNODE_DEPRECATED;
+
+@end
 
 /**
  * This is a node-based UITableViewDataSource.
