@@ -3628,4 +3628,59 @@ static const char *ASDisplayNodeAssociatedNodeKey = "ASAssociatedNode";
   self.automaticallyManagesSubnodes = enabled;
 }
 
+#pragma mark - ASStackLayoutElement
+
+- (void)setSpacingBefore:(CGFloat)spacingBefore
+{
+  self.style.spacingBefore = spacingBefore;
+}
+
+- (void)setSpacingAfter:(CGFloat)spacingAfter
+{
+  self.style.spacingAfter = spacingAfter;
+}
+
+- (void)setFlexGrow:(CGFloat)flexGrow
+{
+  self.style.flexGrow = flexGrow;
+}
+
+- (void)setFlexShrink:(CGFloat)flexShrink
+{
+  self.style.flexShrink = flexShrink;
+}
+
+- (void)setFlexBasis:(ASDimension)flexBasis
+{
+  self.style.flexBasis = flexBasis;
+}
+
+- (void)setAlignSelf:(ASStackLayoutAlignSelf)alignSelf
+{
+  self.style.alignSelf = alignSelf;
+}
+
+- (void)setAscender:(CGFloat)ascender
+{
+  self.style.ascender = ascender;
+}
+
+- (void)setDescender:(CGFloat)descender
+{
+  self.style.descender = descender;
+}
+
+#pragma mark - ASAbsoluteLayoutElement
+
+- (void)setLayoutPosition:(CGPoint)layoutPosition
+{
+  self.style.layoutPosition = layoutPosition;
+}
+
+- (void)setSizeRange:(ASRelativeSizeRange)sizeRange
+{
+  self.style.minRelativeSize = sizeRange.min;
+  self.style.maxRelativeSize = sizeRange.max;
+}
+
 @end

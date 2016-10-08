@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) CGPoint layoutPosition;
 
+@property (nonatomic, assign) ASRelativeSizeRange sizeRange;
+
 @end
 
 NS_ASSUME_NONNULL_END

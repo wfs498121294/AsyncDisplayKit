@@ -21,6 +21,11 @@
   return [[self alloc] initWithChildren:children];
 }
 
++ (instancetype)staticLayoutSpecWithChildren:(NSArray<id<ASLayoutElement>> *)children
+{
+  return [self absoluteLayoutSpecWithChildren:children];
+}
+
 - (instancetype)init
 {
     return [self initWithChildren:@[]];

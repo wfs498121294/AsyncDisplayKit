@@ -227,6 +227,76 @@
   return [ASTraitCollection traitCollectionWithASEnvironmentTraitCollection:self.environmentTraitCollection];
 }
 
+- (void)setPreferredFrameSize:(CGSize)size
+{
+  self.style.preferredSize = size;
+}
+
+- (CGSize)preferredFrameSize
+{
+  ASLayoutElementStyle *style = self.style;
+  if (style.width.unit == ASDimensionUnitPoints && style.height.unit == ASDimensionUnitPoints) {
+    return CGSizeMake(style.width.value, style.height.value);
+  }
+  
+  return CGSizeZero;
+}
+
+#pragma mark - ASStackLayoutElement
+
+- (void)setSpacingBefore:(CGFloat)spacingBefore
+{
+  self.style.spacingBefore = spacingBefore;
+}
+
+- (void)setSpacingAfter:(CGFloat)spacingAfter
+{
+  self.style.spacingAfter = spacingAfter;
+}
+
+- (void)setFlexGrow:(CGFloat)flexGrow
+{
+  self.style.flexGrow = flexGrow;
+}
+
+- (void)setFlexShrink:(CGFloat)flexShrink
+{
+  self.style.flexShrink = flexShrink;
+}
+
+- (void)setFlexBasis:(ASDimension)flexBasis
+{
+  self.style.flexBasis = flexBasis;
+}
+
+- (void)setAlignSelf:(ASStackLayoutAlignSelf)alignSelf
+{
+  self.style.alignSelf = alignSelf;
+}
+
+- (void)setAscender:(CGFloat)ascender
+{
+  self.style.ascender = ascender;
+}
+
+- (void)setDescender:(CGFloat)descender
+{
+  self.style.descender = descender;
+}
+
+#pragma mark - ASAbsoluteLayoutElement
+
+- (void)setLayoutPosition:(CGPoint)layoutPosition
+{
+  self.style.layoutPosition = layoutPosition;
+}
+
+- (void)setSizeRange:(ASRelativeSizeRange)sizeRange
+{
+  self.style.minRelativeSize = sizeRange.min;
+  self.style.maxRelativeSize = sizeRange.max;
+}
+
 ASEnvironmentLayoutExtensibilityForwarding
 
 @end

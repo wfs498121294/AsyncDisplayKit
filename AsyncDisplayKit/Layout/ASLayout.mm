@@ -204,6 +204,26 @@ static inline NSString * descriptionIndents(NSUInteger indents)
   return subnodeFrame;
 }
 
+- (id <ASLayoutElement>)layoutableObject
+{
+  return self.layoutElement;
+}
+
++ (instancetype)layoutWithLayoutableObject:(id<ASLayoutElement>)layoutElement
+                      constrainedSizeRange:(ASSizeRange)constrainedSizeRange
+                                      size:(CGSize)size
+{
+  [self layoutWithLayoutElement:layoutElement size:size];
+}
+
++ (instancetype)layoutWithLayoutableObject:(id<ASLayoutElement>)layoutElement
+                      constrainedSizeRange:(ASSizeRange)constrainedSizeRange
+                                      size:(CGSize)size
+                                sublayouts:(nullable NSArray<ASLayout *> *)sublayouts
+{
+  [self layoutWithLayoutElement:layoutElement size:size sublayouts:sublayouts];
+}
+
 #pragma mark - Description
 
 - (NSMutableArray <NSDictionary *> *)propertiesForDescription

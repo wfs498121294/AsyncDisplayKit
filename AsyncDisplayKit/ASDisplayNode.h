@@ -819,6 +819,9 @@ extern NSInteger const ASDefaultDrawingPriority;
  */
 - (void)cancelLayoutTransition;
 
+@end
+
+@interface ASDisplayNode (Deprecated) <ASStackLayoutElement, ASAbsoluteLayoutElement>
 
 #pragma mark - Deprecated
 
@@ -833,6 +836,8 @@ extern NSInteger const ASDefaultDrawingPriority;
  * @deprecated Deprecated in version 2.0: Just calls through to set the height and width property of the node. Convert to use sizing properties instead: height, minHeight, maxHeight, width, minWidth, maxWidth.
  */
 @property (nonatomic, assign, readwrite) CGSize preferredFrameSize ASDISPLAYNODE_DEPRECATED;
+
+- (CGSize)measure:(CGSize)constrainedSize;
 
 @end
 

@@ -192,3 +192,66 @@ ASSizeRange ASSizeRangeMakeExactSize(CGSize size)
 {
   return ASSizeRangeMake(size);
 }
+
+ASRelativeSizeRange const ASRelativeSizeRangeUnconstrained = {};
+
+#pragma mark - ASRelativeSize
+
+ASRelativeSize ASRelativeSizeMakeWithCGSize(CGSize size)
+{
+  return ASRelativeSizeMake(ASRelativeDimensionMakeWithPoints(size.width),
+                            ASRelativeDimensionMakeWithPoints(size.height));
+}
+
+ASRelativeSize ASRelativeSizeMakeWithFraction(CGFloat fraction)
+{
+  return ASRelativeSizeMake(ASRelativeDimensionMakeWithFraction(fraction),
+                            ASRelativeDimensionMakeWithFraction(fraction));
+}
+
+BOOL ASRelativeSizeEqualToRelativeSize(ASRelativeSize lhs, ASRelativeSize rhs)
+{
+  return ASDimensionEqualToDimension(lhs.width, rhs.width)
+  && ASDimensionEqualToDimension(lhs.height, rhs.height);
+}
+
+
+#pragma mark - ASRelativeSizeRange
+
+ASRelativeSizeRange ASRelativeSizeRangeMake(ASRelativeSize min, ASRelativeSize max)
+{
+  ASRelativeSizeRange sizeRange; sizeRange.min = min; sizeRange.max = max; return sizeRange;
+}
+
+ASRelativeSizeRange ASRelativeSizeRangeMakeWithExactRelativeSize(ASRelativeSize exact)
+{
+  return ASRelativeSizeRangeMake(exact, exact);
+}
+
+ASRelativeSizeRange ASRelativeSizeRangeMakeWithExactCGSize(CGSize exact)
+{
+  return ASRelativeSizeRangeMakeWithExactRelativeSize(ASRelativeSizeMakeWithCGSize(exact));
+}
+
+ASRelativeSizeRange ASRelativeSizeRangeMakeWithExactFraction(CGFloat fraction)
+{
+  return ASRelativeSizeRangeMakeWithExactRelativeSize(ASRelativeSizeMakeWithFraction(fraction));
+}
+
+ASRelativeSizeRange ASRelativeSizeRangeMakeWithExactRelativeDimensions(ASRelativeDimension exactWidth,
+                                                                       ASRelativeDimension exactHeight)
+{
+  return ASRelativeSizeRangeMakeWithExactRelativeSize(ASRelativeSizeMake(exactWidth, exactHeight));
+}
+
+BOOL ASRelativeSizeRangeEqualToRelativeSizeRange(ASRelativeSizeRange lhs, ASRelativeSizeRange rhs)
+{
+  return ASRelativeSizeEqualToRelativeSize(lhs.min, rhs.min) && ASRelativeSizeEqualToRelativeSize(lhs.max, rhs.max);
+}
+
+ASSizeRange ASRelativeSizeRangeResolve(ASRelativeSizeRange relativeSizeRange,
+                                       CGSize parentSize)
+{
+  return ASSizeRangeMake(ASRelativeSizeResolveSize(relativeSizeRange.min, parentSize, parentSize),
+                         ASRelativeSizeResolveSize(relativeSizeRange.max, parentSize, parentSize));
+}
