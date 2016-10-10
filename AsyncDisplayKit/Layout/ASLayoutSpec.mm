@@ -249,9 +249,19 @@
   self.style.spacingBefore = spacingBefore;
 }
 
+- (CGFloat)spacingBefore
+{
+  return self.style.spacingBefore;
+}
+
 - (void)setSpacingAfter:(CGFloat)spacingAfter
 {
   self.style.spacingAfter = spacingAfter;
+}
+
+- (CGFloat)spacingAfter
+{
+  return self.style.spacingAfter;
 }
 
 - (void)setFlexGrow:(CGFloat)flexGrow
@@ -259,9 +269,19 @@
   self.style.flexGrow = flexGrow;
 }
 
+- (CGFloat)flexGrow
+{
+  return self.style.flexGrow;
+}
+
 - (void)setFlexShrink:(CGFloat)flexShrink
 {
   self.style.flexShrink = flexShrink;
+}
+
+- (CGFloat)flexShrink
+{
+  return self.style.flexShrink;
 }
 
 - (void)setFlexBasis:(ASDimension)flexBasis
@@ -269,9 +289,19 @@
   self.style.flexBasis = flexBasis;
 }
 
+- (ASDimension)flexBasis
+{
+  return self.style.flexBasis;
+}
+
 - (void)setAlignSelf:(ASStackLayoutAlignSelf)alignSelf
 {
   self.style.alignSelf = alignSelf;
+}
+
+- (ASStackLayoutAlignSelf)alignSelf
+{
+  return self.style.alignSelf;
 }
 
 - (void)setAscender:(CGFloat)ascender
@@ -279,9 +309,19 @@
   self.style.ascender = ascender;
 }
 
+- (CGFloat)ascender
+{
+  return self.style.ascender;
+}
+
 - (void)setDescender:(CGFloat)descender
 {
   self.style.descender = descender;
+}
+
+- (CGFloat)descender
+{
+  return self.style.descender;
 }
 
 #pragma mark - ASAbsoluteLayoutElement

@@ -3635,9 +3635,19 @@ static const char *ASDisplayNodeAssociatedNodeKey = "ASAssociatedNode";
   self.style.spacingBefore = spacingBefore;
 }
 
+- (CGFloat)spacingBefore
+{
+  return self.style.spacingBefore;
+}
+
 - (void)setSpacingAfter:(CGFloat)spacingAfter
 {
   self.style.spacingAfter = spacingAfter;
+}
+
+- (CGFloat)spacingAfter
+{
+  return self.style.spacingAfter;
 }
 
 - (void)setFlexGrow:(CGFloat)flexGrow
@@ -3645,9 +3655,19 @@ static const char *ASDisplayNodeAssociatedNodeKey = "ASAssociatedNode";
   self.style.flexGrow = flexGrow;
 }
 
+- (CGFloat)flexGrow
+{
+  return self.style.flexGrow;
+}
+
 - (void)setFlexShrink:(CGFloat)flexShrink
 {
   self.style.flexShrink = flexShrink;
+}
+
+- (CGFloat)flexShrink
+{
+  return self.style.flexShrink;
 }
 
 - (void)setFlexBasis:(ASDimension)flexBasis
@@ -3655,9 +3675,19 @@ static const char *ASDisplayNodeAssociatedNodeKey = "ASAssociatedNode";
   self.style.flexBasis = flexBasis;
 }
 
+- (ASDimension)flexBasis
+{
+  return self.style.flexBasis;
+}
+
 - (void)setAlignSelf:(ASStackLayoutAlignSelf)alignSelf
 {
   self.style.alignSelf = alignSelf;
+}
+
+- (ASStackLayoutAlignSelf)alignSelf
+{
+  return self.style.alignSelf;
 }
 
 - (void)setAscender:(CGFloat)ascender
@@ -3665,9 +3695,19 @@ static const char *ASDisplayNodeAssociatedNodeKey = "ASAssociatedNode";
   self.style.ascender = ascender;
 }
 
+- (CGFloat)ascender
+{
+  return self.style.ascender;
+}
+
 - (void)setDescender:(CGFloat)descender
 {
   self.style.descender = descender;
+}
+
+- (CGFloat)descender
+{
+  return self.style.descender;
 }
 
 #pragma mark - ASAbsoluteLayoutElement
@@ -3677,10 +3717,20 @@ static const char *ASDisplayNodeAssociatedNodeKey = "ASAssociatedNode";
   self.style.layoutPosition = layoutPosition;
 }
 
+- (CGPoint)layoutPosition
+{
+  return self.style.layoutPosition;
+}
+
 - (void)setSizeRange:(ASRelativeSizeRange)sizeRange
 {
   self.style.minRelativeSize = sizeRange.min;
   self.style.maxRelativeSize = sizeRange.max;
+}
+
+- (ASRelativeSizeRange)sizeRange
+{
+  return ASRelativeSizeRangeMake(self.style.minRelativeSize, self.style.maxRelativeSize);
 }
 
 @end

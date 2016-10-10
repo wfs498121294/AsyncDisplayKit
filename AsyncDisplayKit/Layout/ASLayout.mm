@@ -213,7 +213,7 @@ static inline NSString * descriptionIndents(NSUInteger indents)
                       constrainedSizeRange:(ASSizeRange)constrainedSizeRange
                                       size:(CGSize)size
 {
-  [self layoutWithLayoutElement:layoutElement size:size];
+  return [self layoutWithLayoutElement:layoutElement size:size];
 }
 
 + (instancetype)layoutWithLayoutableObject:(id<ASLayoutElement>)layoutElement
@@ -221,7 +221,7 @@ static inline NSString * descriptionIndents(NSUInteger indents)
                                       size:(CGSize)size
                                 sublayouts:(nullable NSArray<ASLayout *> *)sublayouts
 {
-  [self layoutWithLayoutElement:layoutElement size:size sublayouts:sublayouts];
+  return [self layoutWithLayoutElement:layoutElement size:size sublayouts:sublayouts];
 }
 
 #pragma mark - Description
