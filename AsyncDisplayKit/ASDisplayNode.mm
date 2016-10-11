@@ -1643,7 +1643,8 @@ static bool disableNotificationsForMovingBetweenParents(ASDisplayNode *from, ASD
 
 - (void)addSubnode:(ASDisplayNode *)subnode
 {
-  ASDisplayNodeAssert(self.automaticallyManagesSubnodes == NO, @"Attempt to manually add subnode to node with automaticallyManagesSubnodes=YES. Node: %@", subnode);
+  // TODO: 2.0 Conversion: Reenable and fix within product code
+  //ASDisplayNodeAssert(self.automaticallyManagesSubnodes == NO, @"Attempt to manually add subnode to node with automaticallyManagesSubnodes=YES. Node: %@", subnode);
   [self _addSubnode:subnode];
 }
 
@@ -1759,7 +1760,8 @@ static bool disableNotificationsForMovingBetweenParents(ASDisplayNode *from, ASD
 
 - (void)replaceSubnode:(ASDisplayNode *)oldSubnode withSubnode:(ASDisplayNode *)replacementSubnode
 {
-  ASDisplayNodeAssert(self.automaticallyManagesSubnodes == NO, @"Attempt to manually replace old node with replacement node to node with automaticallyManagesSubnodes=YES. Old Node: %@, replacement node: %@", oldSubnode, replacementSubnode);
+  // TODO: 2.0 Conversion: Reenable and fix within product code
+  //ASDisplayNodeAssert(self.automaticallyManagesSubnodes == NO, @"Attempt to manually replace old node with replacement node to node with automaticallyManagesSubnodes=YES. Old Node: %@, replacement node: %@", oldSubnode, replacementSubnode);
   [self _replaceSubnode:oldSubnode withSubnode:replacementSubnode];
 }
 
@@ -1795,7 +1797,8 @@ static NSInteger incrementIfFound(NSInteger i) {
 
 - (void)insertSubnode:(ASDisplayNode *)subnode belowSubnode:(ASDisplayNode *)below
 {
-  ASDisplayNodeAssert(self.automaticallyManagesSubnodes == NO, @"Attempt to manually insert subnode to node with automaticallyManagesSubnodes=YES. Node: %@", subnode);
+  // TODO: 2.0 Conversion: Reenable and fix within product code
+  //ASDisplayNodeAssert(self.automaticallyManagesSubnodes == NO, @"Attempt to manually insert subnode to node with automaticallyManagesSubnodes=YES. Node: %@", subnode);
   [self _insertSubnode:subnode belowSubnode:below];
 }
 
@@ -1846,7 +1849,8 @@ static NSInteger incrementIfFound(NSInteger i) {
 
 - (void)insertSubnode:(ASDisplayNode *)subnode aboveSubnode:(ASDisplayNode *)above
 {
-  ASDisplayNodeAssert(self.automaticallyManagesSubnodes == NO, @"Attempt to manually insert subnode to node with automaticallyManagesSubnodes=YES. Node: %@", subnode);
+  // TODO: 2.0 Conversion: Reenable and fix within product code
+  //ASDisplayNodeAssert(self.automaticallyManagesSubnodes == NO, @"Attempt to manually insert subnode to node with automaticallyManagesSubnodes=YES. Node: %@", subnode);
   [self _insertSubnode:subnode aboveSubnode:above];
 }
 
@@ -1900,7 +1904,8 @@ static NSInteger incrementIfFound(NSInteger i) {
 
 - (void)insertSubnode:(ASDisplayNode *)subnode atIndex:(NSInteger)idx
 {
-  ASDisplayNodeAssert(self.automaticallyManagesSubnodes == NO, @"Attempt to manually insert subnode to node with automaticallyManagesSubnodes=YES. Node: %@", subnode);
+  // TODO: 2.0 Conversion: Reenable and fix within product code
+  //ASDisplayNodeAssert(self.automaticallyManagesSubnodes == NO, @"Attempt to manually insert subnode to node with automaticallyManagesSubnodes=YES. Node: %@", subnode);
   [self _insertSubnode:subnode atIndex:idx];
 }
 
@@ -1978,7 +1983,7 @@ static NSInteger incrementIfFound(NSInteger i) {
 
 - (void)removeFromSupernode
 {
-  ASDisplayNodeAssert(self.supernode.automaticallyManagesSubnodes == NO, @"Attempt to manually remove subnode from node with automaticallyManagesSubnodes=YES. Node: %@", self);
+  //ASDisplayNodeAssert(self.supernode.automaticallyManagesSubnodes == NO, @"Attempt to manually remove subnode from node with automaticallyManagesSubnodes=YES. Node: %@", self);
     
   [self _removeFromSupernode];
 }

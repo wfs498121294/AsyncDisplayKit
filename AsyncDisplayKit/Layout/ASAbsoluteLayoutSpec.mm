@@ -65,19 +65,21 @@
     [sublayouts addObject:sublayout];
   }
   
-  if (isnan(size.width)) {
+  // TODO: 2.0 Conversion: Figure out path forward
+  //if (isnan(size.width)) {
     size.width = constrainedSize.min.width;
     for (ASLayout *sublayout in sublayouts) {
       size.width  = MAX(size.width,  sublayout.position.x + sublayout.size.width);
     }
-  }
+  //}
   
-  if (isnan(size.height)) {
+  // TODO: 2.0 Conversion: Figure out path forward
+  //if (isnan(size.height)) {
     size.height = constrainedSize.min.height;
     for (ASLayout *sublayout in sublayouts) {
       size.height = MAX(size.height, sublayout.position.y + sublayout.size.height);
     }
-  }
+  //}
   
   return [ASLayout layoutWithLayoutElement:self size:ASSizeRangeClamp(constrainedSize, size) sublayouts:sublayouts];
 }
