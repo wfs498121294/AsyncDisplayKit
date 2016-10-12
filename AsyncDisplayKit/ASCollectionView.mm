@@ -893,10 +893,10 @@ static NSString * const kCellReuseIdentifier = @"_ASCollectionViewCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-  if (_asyncDelegateFlags.collectionNodeDidSelectItem) {
+  if (_asyncDelegateFlags.collectionNodeDidDeselectItem) {
     ASCellNode *node = [self nodeForItemAtIndexPath:indexPath];
     return [_asyncDelegate collectionNode:self.collectionNode didSelectItemWithNode:node];
-  } else if (_asyncDelegateFlags.collectionViewDidSelectItem) {
+  } else if (_asyncDelegateFlags.collectionViewDidDeselectItem) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [_asyncDelegate collectionView:self didDeselectItemAtIndexPath:indexPath];
