@@ -192,7 +192,7 @@ ASDimension ASRelativeDimensionMake(ASRelativeDimensionType type, CGFloat value)
 {
   if (type == ASRelativeDimensionTypePoints) {
     return ASDimensionMakeWithPoints(value);
-  } else if (type == ASRelativeDimensionTypeFractions) {
+  } else if (type == ASRelativeDimensionTypeFraction) {
     return ASDimensionMakeWithFraction(value);
   }
   

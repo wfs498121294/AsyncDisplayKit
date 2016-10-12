@@ -339,7 +339,7 @@ typedef NS_ENUM(NSInteger, ASRelativeDimensionType) {
   /** Just a number. It will always resolve to exactly this amount. This is the default type. */
   ASRelativeDimensionTypePoints,
   /** Multiplied to a provided parent amount to resolve a final amount. */
-  ASRelativeDimensionTypeFractions,
+  ASRelativeDimensionTypeFraction,
 };
 
 #define ASRelativeDimension ASDimension
