@@ -18,6 +18,7 @@
 
 @class ASLayout;
 @class ASLayoutSpec;
+@protocol ASLayoutElementStylability;
 
 /** A constant that indicates that the parent's size is not yet determined in a given dimension. */
 extern CGFloat const ASLayoutElementParentDimensionUndefined;
@@ -49,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
  * access to the options via convenience properties. If you are creating custom layout spec, then you can
  * extend the backing layout options class to accommodate any new layout options.
  */
-@protocol ASLayoutElement <ASEnvironment, ASLayoutElementPrivate, ASLayoutElementExtensibility, NSFastEnumeration, ASStackLayoutElement, ASAbsoluteLayoutElement>
+@protocol ASLayoutElement <ASEnvironment, ASLayoutElementPrivate, ASLayoutElementExtensibility, ASLayoutElementStylability, NSFastEnumeration, ASStackLayoutElement, ASAbsoluteLayoutElement>
 
 #pragma mark - Getter
 
@@ -245,7 +246,7 @@ extern NSString * const ASLayoutElementStyleLayoutPositionProperty;
  * and the preferredSize exceeds these, the minSize or maxSize will be enforced. If this optional value is not 
  * provided, the layout element’s size will default to it’s intrinsic content size provided calculateSizeThatFits:
  * 
- * @discussion This method is optional, but one of either preferredSize or preferredRelativeSize is required 
+ * @discussion This method is optional, but one of either preferredSize or preferredLayoutSize is required
  * for nodes that either have no intrinsic content size or 
  * should be laid out at a different size than its intrinsic content size. For example, this property could be 
  * set on an ASImageNode to display at a size different from the underlying image size. 
@@ -278,27 +279,27 @@ extern NSString * const ASLayoutElementStyleLayoutPositionProperty;
 - (CGSize)maxSize UNAVAILABLE_ATTRIBUTE;
 
 /**
- * @abstract Provides a suggested RELATIVE size for a layout element. An ASRelativeSize uses percentages rather 
- * than points to specify layout. E.g. width should be 50% of the parent’s width. If the optional minRelativeSize or 
- * maxRelativeSize are provided, and the preferredRelativeSize exceeds these, the minRelativeSize or maxRelativeSize 
+ * @abstract Provides a suggested RELATIVE size for a layout element. An ASLayoutSize uses percentages rather
+ * than points to specify layout. E.g. width should be 50% of the parent’s width. If the optional minLayoutSize or
+ * maxLayoutSize are provided, and the preferredLayoutSize exceeds these, the minLayoutSize or maxLayoutSize 
  * will be enforced. If this optional value is not provided, the layout element’s size will default to its intrinsic content size 
  * provided calculateSizeThatFits:
  */
-@property (nonatomic, assign, readwrite) ASRelativeSize preferredRelativeSize;
+@property (nonatomic, assign, readwrite) ASLayoutSize preferredLayoutSize;
 
 /**
  * @abstract An optional property that provides a minimum RELATIVE size bound for a layout element. If provided, this
  * restriction will always be enforced. If a parent layout element’s minimum relative size is smaller than its child’s minimum
  * relative size, the child’s minimum relative size will be enforced and its size will extend out of the layout spec’s.
  */
-@property (nonatomic, assign, readwrite) ASRelativeSize minRelativeSize;
+@property (nonatomic, assign, readwrite) ASLayoutSize minLayoutSize;
 
 /**
  * @abstract An optional property that provides a maximum RELATIVE size bound for a layout element. If provided, this
  * restriction will always be enforced. If a parent layout element’s maximum relative size is smaller than its child’s maximum
  * relative size, the child’s maximum relative size will be enforced and its size will extend out of the layout spec’s.
  */
-@property (nonatomic, assign, readwrite) ASRelativeSize maxRelativeSize;
+@property (nonatomic, assign, readwrite) ASLayoutSize maxLayoutSize;
 
 
 #pragma mark - ASStackLayoutElement
@@ -359,6 +360,15 @@ extern NSString * const ASLayoutElementStyleLayoutPositionProperty;
  * @abstract The position of this object within its parent spec.
  */
 @property (nonatomic, assign) CGPoint layoutPosition;
+
+@end
+
+
+#pragma mark - ASLayoutElementStylability
+
+@protocol ASLayoutElementStylability
+
+- (instancetype)styledWithBlock:(__attribute__((noescape)) void (^)(__kindof ASLayoutElementStyle *style))styleBlock;
 
 @end
 
