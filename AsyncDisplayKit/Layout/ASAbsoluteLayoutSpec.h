@@ -23,10 +23,17 @@ NS_ASSUME_NONNULL_BEGIN
  @param children Children to be positioned at fixed positions
  */
 + (instancetype)absoluteLayoutSpecWithChildren:(NSArray<id<ASLayoutElement>> *)children AS_WARN_UNUSED_RESULT;
-+ (instancetype)staticLayoutSpecWithChildren:(NSArray<id<ASLayoutElement>> *)children AS_WARN_UNUSED_RESULT;
+
+@end
+
+#pragma mark - Deprecated
+
+#define ASStaticLayoutSpec ASAbsoluteLayoutSpec
+
+@interface ASAbsoluteLayoutSpec (Deprecated)
+
++ (instancetype)staticLayoutSpecWithChildren:(NSArray<id<ASLayoutElement>> *)children AS_WARN_UNUSED_RESULT ASDISPLAYNODE_DEPRECATED;
 
 @end
 
 NS_ASSUME_NONNULL_END
-
-#define ASStaticLayoutSpec ASAbsoluteLayoutSpec

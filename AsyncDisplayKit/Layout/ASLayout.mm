@@ -204,26 +204,6 @@ static inline NSString * descriptionIndents(NSUInteger indents)
   return subnodeFrame;
 }
 
-- (id <ASLayoutElement>)layoutableObject
-{
-  return self.layoutElement;
-}
-
-+ (instancetype)layoutWithLayoutableObject:(id<ASLayoutElement>)layoutElement
-                      constrainedSizeRange:(ASSizeRange)constrainedSizeRange
-                                      size:(CGSize)size
-{
-  return [self layoutWithLayoutElement:layoutElement size:size];
-}
-
-+ (instancetype)layoutWithLayoutableObject:(id<ASLayoutElement>)layoutElement
-                      constrainedSizeRange:(ASSizeRange)constrainedSizeRange
-                                      size:(CGSize)size
-                                sublayouts:(nullable NSArray<ASLayout *> *)sublayouts
-{
-  return [self layoutWithLayoutElement:layoutElement size:size sublayouts:sublayouts];
-}
-
 #pragma mark - Description
 
 - (NSMutableArray <NSDictionary *> *)propertiesForDescription
@@ -255,6 +235,30 @@ static inline NSString * descriptionIndents(NSUInteger indents)
     [description appendString:[self _recursiveDescriptionForLayout:sublayout level:level + 1]];
   }
   return description;
+}
+
+@end
+
+@implementation ASLayout (Deprecation)
+
+- (id <ASLayoutElement>)layoutableObject
+{
+  return self.layoutElement;
+}
+
++ (instancetype)layoutWithLayoutableObject:(id<ASLayoutElement>)layoutElement
+                      constrainedSizeRange:(ASSizeRange)constrainedSizeRange
+                                      size:(CGSize)size
+{
+  return [self layoutWithLayoutElement:layoutElement size:size];
+}
+
++ (instancetype)layoutWithLayoutableObject:(id<ASLayoutElement>)layoutElement
+                      constrainedSizeRange:(ASSizeRange)constrainedSizeRange
+                                      size:(CGSize)size
+                                sublayouts:(nullable NSArray<ASLayout *> *)sublayouts
+{
+  return [self layoutWithLayoutElement:layoutElement size:size sublayouts:sublayouts];
 }
 
 @end

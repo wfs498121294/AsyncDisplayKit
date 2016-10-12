@@ -243,8 +243,7 @@ ASRelativeSizeRange ASRelativeSizeRangeMakeWithExactFraction(CGFloat fraction)
   return ASRelativeSizeRangeMakeWithExactRelativeSize(ASRelativeSizeMakeWithFraction(fraction));
 }
 
-ASRelativeSizeRange ASRelativeSizeRangeMakeWithExactRelativeDimensions(ASRelativeDimension exactWidth,
-                                                                       ASRelativeDimension exactHeight)
+ASRelativeSizeRange ASRelativeSizeRangeMakeWithExactRelativeDimensions(ASRelativeDimension exactWidth, ASRelativeDimension exactHeight)
 {
   return ASRelativeSizeRangeMakeWithExactRelativeSize(ASRelativeSizeMake(exactWidth, exactHeight));
 }

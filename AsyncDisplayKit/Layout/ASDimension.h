@@ -322,6 +322,7 @@ ASDISPLAYNODE_INLINE AS_WARN_UNUSED_RESULT ASSizeRange ASLayoutElementSizeResolv
 
 
 #pragma mark - Deprecated
+
 #define ASRelativeDimension ASDimension
 #define ASRelativeDimensionMakeWithPoints ASDimensionMakeWithPoints
 #define ASRelativeDimensionMakeWithFraction ASDimensionMakeWithFraction
@@ -344,36 +345,35 @@ extern ASRelativeSizeRange const ASRelativeSizeRangeUnconstrained;
 
 #pragma mark - ASRelativeSize
 
-extern ASLayoutSize ASRelativeSizeMake(ASRelativeDimension width, ASRelativeDimension height);
+extern ASLayoutSize ASRelativeSizeMake(ASRelativeDimension width, ASRelativeDimension height) ASDISPLAYNODE_DEPRECATED;
 
 /** Convenience constructor to provide size in points. */
-extern ASLayoutSize ASRelativeSizeMakeWithCGSize(CGSize size);
+extern ASLayoutSize ASRelativeSizeMakeWithCGSize(CGSize size) ASDISPLAYNODE_DEPRECATED;
 
 /** Convenience constructor to provide size as a fraction. */
-extern ASLayoutSize ASRelativeSizeMakeWithFraction(CGFloat fraction);
+extern ASLayoutSize ASRelativeSizeMakeWithFraction(CGFloat fraction) ASDISPLAYNODE_DEPRECATED;
 
-extern BOOL ASRelativeSizeEqualToRelativeSize(ASLayoutSize lhs, ASLayoutSize rhs);
+extern BOOL ASRelativeSizeEqualToRelativeSize(ASLayoutSize lhs, ASLayoutSize rhs) ASDISPLAYNODE_DEPRECATED;
 
-extern NSString *NSStringFromASRelativeSize(ASLayoutSize size);
+extern NSString *NSStringFromASRelativeSize(ASLayoutSize size) ASDISPLAYNODE_DEPRECATED;
 
 #pragma mark - ASRelativeSizeRange
 
-extern ASRelativeSizeRange ASRelativeSizeRangeMake(ASLayoutSize min, ASLayoutSize max);
+extern ASRelativeSizeRange ASRelativeSizeRangeMake(ASLayoutSize min, ASLayoutSize max) ASDISPLAYNODE_DEPRECATED;
 
 #pragma mark Convenience constructors to provide an exact size (min == max).
-extern ASRelativeSizeRange ASRelativeSizeRangeMakeWithExactRelativeSize(ASLayoutSize exact);
+extern ASRelativeSizeRange ASRelativeSizeRangeMakeWithExactRelativeSize(ASLayoutSize exact) ASDISPLAYNODE_DEPRECATED;
 
-extern ASRelativeSizeRange ASRelativeSizeRangeMakeWithExactCGSize(CGSize exact);
+extern ASRelativeSizeRange ASRelativeSizeRangeMakeWithExactCGSize(CGSize exact) ASDISPLAYNODE_DEPRECATED;
 
-extern ASRelativeSizeRange ASRelativeSizeRangeMakeWithExactFraction(CGFloat fraction);
+extern ASRelativeSizeRange ASRelativeSizeRangeMakeWithExactFraction(CGFloat fraction) ASDISPLAYNODE_DEPRECATED;
 
-extern ASRelativeSizeRange ASRelativeSizeRangeMakeWithExactRelativeDimensions(ASRelativeDimension exactWidth,
-                                                                              ASRelativeDimension exactHeight);
+extern ASRelativeSizeRange ASRelativeSizeRangeMakeWithExactRelativeDimensions(ASRelativeDimension exactWidth, ASRelativeDimension exactHeight) ASDISPLAYNODE_DEPRECATED;
 
-extern BOOL ASRelativeSizeRangeEqualToRelativeSizeRange(ASRelativeSizeRange lhs, ASRelativeSizeRange rhs);
+extern BOOL ASRelativeSizeRangeEqualToRelativeSizeRange(ASRelativeSizeRange lhs, ASRelativeSizeRange rhs) ASDISPLAYNODE_DEPRECATED;
 
 /** Provided a parent size, compute final dimensions for this RelativeSizeRange to arrive at a SizeRange. */
-extern ASSizeRange ASRelativeSizeRangeResolve(ASRelativeSizeRange relativeSizeRange, CGSize parentSize);
+extern ASSizeRange ASRelativeSizeRangeResolve(ASRelativeSizeRange relativeSizeRange, CGSize parentSize) ASDISPLAYNODE_DEPRECATED;
 
 NS_ASSUME_NONNULL_END
 ASDISPLAYNODE_EXTERN_C_END
