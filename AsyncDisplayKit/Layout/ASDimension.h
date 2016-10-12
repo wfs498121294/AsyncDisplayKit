@@ -343,6 +343,7 @@ typedef NS_ENUM(NSInteger, ASRelativeDimensionType) {
 };
 
 #define ASRelativeDimension ASDimension
+#define ASRelativeSize ASLayoutSize
 #define ASRelativeDimensionMakeWithPoints ASDimensionMakeWithPoints
 #define ASRelativeDimensionMakeWithFraction ASDimensionMakeWithFraction
 

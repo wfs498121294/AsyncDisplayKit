@@ -826,6 +826,27 @@ extern NSInteger const ASDefaultDrawingPriority;
 #pragma mark - Deprecated
 
 /**
+ * @abstract Asks the node to measure and return the size that best fits its subnodes.
+ *
+ * @param constrainedSize The maximum size the receiver should fit in.
+ *
+ * @return A new size that fits the receiver's subviews.
+ *
+ * @discussion Though this method does not set the bounds of the view, it does have side effects--caching both the
+ * constraint and the result.
+ *
+ * @warning Subclasses must not override this; it calls -measureWithSizeRange: with zero min size.
+ * -measureWithSizeRange: caches results from -calculateLayoutThatFits:.  Calling this method may
+ * be expensive if result is not cached.
+ *
+ * @see measureWithSizeRange:
+ * @see [ASDisplayNode(Subclassing) calculateLayoutThatFits:]
+ *
+ * @deprecated Deprecated in version 2.0: Use layoutThatFits: with a constrained size of (CGSizeZero, constrainedSize) and call size on the returned ASLayout
+ */
+- (CGSize)measure:(CGSize)constrainedSize ASDISPLAYNODE_DEPRECATED;
+
+/**
  * @abstract Provides a default intrinsic content size for calculateSizeThatFits:. This is useful when laying out
  * a node that either has no intrinsic content size or should be laid out at a different size than its intrinsic content
  * size. For example, this property could be set on an ASImageNode to display at a size different from the underlying
