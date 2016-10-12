@@ -336,32 +336,32 @@ extern AS_WARN_UNUSED_RESULT ASSizeRange ASSizeRangeMakeExactSize(CGSize size) A
  Used by ASStaticLayoutSpec.
  */
 typedef struct {
-  ASRelativeSize min;
-  ASRelativeSize max;
+  ASLayoutSize min;
+  ASLayoutSize max;
 } ASRelativeSizeRange;
 
 extern ASRelativeSizeRange const ASRelativeSizeRangeUnconstrained;
 
 #pragma mark - ASRelativeSize
 
-extern ASRelativeSize ASRelativeSizeMake(ASRelativeDimension width, ASRelativeDimension height);
+extern ASLayoutSize ASRelativeSizeMake(ASRelativeDimension width, ASRelativeDimension height);
 
 /** Convenience constructor to provide size in points. */
-extern ASRelativeSize ASRelativeSizeMakeWithCGSize(CGSize size);
+extern ASLayoutSize ASRelativeSizeMakeWithCGSize(CGSize size);
 
 /** Convenience constructor to provide size as a fraction. */
-extern ASRelativeSize ASRelativeSizeMakeWithFraction(CGFloat fraction);
+extern ASLayoutSize ASRelativeSizeMakeWithFraction(CGFloat fraction);
 
-extern BOOL ASRelativeSizeEqualToRelativeSize(ASRelativeSize lhs, ASRelativeSize rhs);
+extern BOOL ASRelativeSizeEqualToRelativeSize(ASLayoutSize lhs, ASLayoutSize rhs);
 
-extern NSString *NSStringFromASRelativeSize(ASRelativeSize size);
+extern NSString *NSStringFromASRelativeSize(ASLayoutSize size);
 
 #pragma mark - ASRelativeSizeRange
 
-extern ASRelativeSizeRange ASRelativeSizeRangeMake(ASRelativeSize min, ASRelativeSize max);
+extern ASRelativeSizeRange ASRelativeSizeRangeMake(ASLayoutSize min, ASLayoutSize max);
 
 #pragma mark Convenience constructors to provide an exact size (min == max).
-extern ASRelativeSizeRange ASRelativeSizeRangeMakeWithExactRelativeSize(ASRelativeSize exact);
+extern ASRelativeSizeRange ASRelativeSizeRangeMakeWithExactRelativeSize(ASLayoutSize exact);
 
 extern ASRelativeSizeRange ASRelativeSizeRangeMakeWithExactCGSize(CGSize exact);
 

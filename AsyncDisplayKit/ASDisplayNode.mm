@@ -3735,13 +3735,13 @@ static const char *ASDisplayNodeAssociatedNodeKey = "ASAssociatedNode";
 
 - (void)setSizeRange:(ASRelativeSizeRange)sizeRange
 {
-  self.style.minRelativeSize = sizeRange.min;
-  self.style.maxRelativeSize = sizeRange.max;
+  self.style.minLayoutSize = sizeRange.min;
+  self.style.maxLayoutSize = sizeRange.max;
 }
 
 - (ASRelativeSizeRange)sizeRange
 {
-  return ASRelativeSizeRangeMake(self.style.minRelativeSize, self.style.maxRelativeSize);
+  return ASRelativeSizeRangeMake(self.style.minLayoutSize, self.style.maxLayoutSize);
 }
 
 @end

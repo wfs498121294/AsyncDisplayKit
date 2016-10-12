@@ -197,19 +197,24 @@ ASRelativeSizeRange const ASRelativeSizeRangeUnconstrained = {};
 
 #pragma mark - ASRelativeSize
 
-ASRelativeSize ASRelativeSizeMakeWithCGSize(CGSize size)
+ASLayoutSize ASRelativeSizeMake(ASRelativeDimension width, ASRelativeDimension height)
+{
+  return ASLayoutSizeMake(width, height);
+}
+
+ASLayoutSize ASRelativeSizeMakeWithCGSize(CGSize size)
 {
   return ASRelativeSizeMake(ASRelativeDimensionMakeWithPoints(size.width),
                             ASRelativeDimensionMakeWithPoints(size.height));
 }
 
-ASRelativeSize ASRelativeSizeMakeWithFraction(CGFloat fraction)
+ASLayoutSize ASRelativeSizeMakeWithFraction(CGFloat fraction)
 {
   return ASRelativeSizeMake(ASRelativeDimensionMakeWithFraction(fraction),
                             ASRelativeDimensionMakeWithFraction(fraction));
 }
 
-BOOL ASRelativeSizeEqualToRelativeSize(ASRelativeSize lhs, ASRelativeSize rhs)
+BOOL ASRelativeSizeEqualToRelativeSize(ASLayoutSize lhs, ASLayoutSize rhs)
 {
   return ASDimensionEqualToDimension(lhs.width, rhs.width)
   && ASDimensionEqualToDimension(lhs.height, rhs.height);
@@ -218,12 +223,12 @@ BOOL ASRelativeSizeEqualToRelativeSize(ASRelativeSize lhs, ASRelativeSize rhs)
 
 #pragma mark - ASRelativeSizeRange
 
-ASRelativeSizeRange ASRelativeSizeRangeMake(ASRelativeSize min, ASRelativeSize max)
+ASRelativeSizeRange ASRelativeSizeRangeMake(ASLayoutSize min, ASLayoutSize max)
 {
   ASRelativeSizeRange sizeRange; sizeRange.min = min; sizeRange.max = max; return sizeRange;
 }
 
-ASRelativeSizeRange ASRelativeSizeRangeMakeWithExactRelativeSize(ASRelativeSize exact)
+ASRelativeSizeRange ASRelativeSizeRangeMakeWithExactRelativeSize(ASLayoutSize exact)
 {
   return ASRelativeSizeRangeMake(exact, exact);
 }
@@ -252,6 +257,6 @@ BOOL ASRelativeSizeRangeEqualToRelativeSizeRange(ASRelativeSizeRange lhs, ASRela
 ASSizeRange ASRelativeSizeRangeResolve(ASRelativeSizeRange relativeSizeRange,
                                        CGSize parentSize)
 {
-  return ASSizeRangeMake(ASRelativeSizeResolveSize(relativeSizeRange.min, parentSize, parentSize),
-                         ASRelativeSizeResolveSize(relativeSizeRange.max, parentSize, parentSize));
+  return ASSizeRangeMake(ASLayoutSizeResolveSize(relativeSizeRange.min, parentSize, parentSize),
+                         ASLayoutSizeResolveSize(relativeSizeRange.max, parentSize, parentSize));
 }

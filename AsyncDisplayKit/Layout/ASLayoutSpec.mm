@@ -339,8 +339,8 @@
 
 - (void)setSizeRange:(ASRelativeSizeRange)sizeRange
 {
-  self.style.minRelativeSize = sizeRange.min;
-  self.style.maxRelativeSize = sizeRange.max;
+  self.style.minLayoutSize = sizeRange.min;
+  self.style.maxLayoutSize = sizeRange.max;
 }
 
 ASEnvironmentLayoutExtensibilityForwarding
