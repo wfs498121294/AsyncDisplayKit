@@ -309,6 +309,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)moveRowAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)newIndexPath ASDISPLAYNODE_DEPRECATED;
 
+/// Deprecated in 2.0. You should not call this method.
+- (void)clearContents ASDISPLAYNODE_DEPRECATED;
+
+/// Deprecated in 2.0. You should not call this method.
+- (void)clearFetchedData ASDISPLAYNODE_DEPRECATED;
+
 @end
 
 ASDISPLAYNODE_DEPRECATED
