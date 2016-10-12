@@ -300,6 +300,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)reloadData ASDISPLAYNODE_DEPRECATED;
 
+/**
+ * Reload everything from scratch, destroying the working range and all cached nodes.
+ *
+ * @warning This method is substantially more expensive than UICollectionView's version.
+ *
+ * This method is deprecated in 2.0. Use @c reloadDataWithCompletion:nil and
+ *   then @c waitUntilAllUpdatesAreCommitted instead.
+ */
+- (void)reloadDataImmediately ASDISPLAYNODE_DEPRECATED;
+
 @end
 
 /**

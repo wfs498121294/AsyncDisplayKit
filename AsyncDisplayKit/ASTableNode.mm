@@ -71,7 +71,7 @@
 - (instancetype)_initWithFrame:(CGRect)frame style:(UITableViewStyle)style dataControllerClass:(Class)dataControllerClass
 {
   ASDisplayNodeViewBlock tableViewBlock = ^UIView *{
-    return [[ASTableView alloc] _initWithFrame:frame style:style dataControllerClass:dataControllerClass ownedByNode:YES];
+    return [[ASTableView alloc] _initWithFrame:frame style:style dataControllerClass:dataControllerClass];
   };
 
   if (self = [super initWithViewBlock:tableViewBlock]) {
