@@ -530,7 +530,7 @@ static NSString * const kCellReuseIdentifier = @"_ASCollectionViewCell";
 
 - (CGSize)calculatedSizeForNodeAtIndexPath:(NSIndexPath *)indexPath
 {
-  return [[_dataController nodeAtCompletedIndexPath:indexPath] calculatedSize];
+  return [[self nodeForItemAtIndexPath:indexPath] calculatedSize];
 }
 
 - (NSArray<NSArray <ASCellNode *> *> *)completedNodes
@@ -546,10 +546,10 @@ static NSString * const kCellReuseIdentifier = @"_ASCollectionViewCell";
 - (NSIndexPath *)convertIndexPathFromCollectionNode:(NSIndexPath *)indexPath waitingIfNeeded:(BOOL)wait
 {
   ASCellNode *node = [_dataController nodeAtIndexPath:indexPath];
-  NSIndexPath *viewIndexPath = [_dataController completedIndexPathForNode:node];
+  NSIndexPath *viewIndexPath = [self indexPathForNode:node];
   if (viewIndexPath == nil && wait) {
     [self waitUntilAllUpdatesAreCommitted];
-    viewIndexPath = [_dataController completedIndexPathForNode:node];
+    viewIndexPath = [self indexPathForNode:node];
   }
   return viewIndexPath;
 }
@@ -1389,7 +1389,7 @@ static NSString * const kCellReuseIdentifier = @"_ASCollectionViewCell";
 
 - (ASDisplayNode *)rangeController:(ASRangeController *)rangeController nodeAtIndexPath:(NSIndexPath *)indexPath
 {
-  return [_dataController nodeAtCompletedIndexPath:indexPath];
+  return [self nodeForItemAtIndexPath:indexPath];
 }
 
 - (NSString *)nameForRangeControllerDataSource
@@ -1533,7 +1533,7 @@ static NSString * const kCellReuseIdentifier = @"_ASCollectionViewCell";
 #pragma mark - ASCellNodeDelegate
 - (void)nodeSelectedStateDidChange:(ASCellNode *)node
 {
-  NSIndexPath *indexPath = [_dataController completedIndexPathForNode:node];
+  NSIndexPath *indexPath = [self indexPathForNode:node];
   if (indexPath) {
     if (node.isSelected) {
       [super selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
@@ -1545,7 +1545,7 @@ static NSString * const kCellReuseIdentifier = @"_ASCollectionViewCell";
 
 - (void)nodeHighlightedStateDidChange:(ASCellNode *)node
 {
-  NSIndexPath *indexPath = [_dataController completedIndexPathForNode:node];
+  NSIndexPath *indexPath = [self indexPathForNode:node];
   if (indexPath) {
     [self cellForItemAtIndexPath:indexPath].highlighted = node.isHighlighted;
   }
@@ -1559,7 +1559,7 @@ static NSString * const kCellReuseIdentifier = @"_ASCollectionViewCell";
     return;
   }
   
-  NSIndexPath *uikitIndexPath = [_dataController completedIndexPathForNode:node];
+  NSIndexPath *uikitIndexPath = [self indexPathForNode:node];
   if (uikitIndexPath == nil) {
     return;
   }
