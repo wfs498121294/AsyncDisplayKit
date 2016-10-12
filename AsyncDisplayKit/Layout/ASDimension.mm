@@ -188,6 +188,18 @@ NSString *NSStringFromASSizeRange(ASSizeRange sizeRange)
 
 #pragma mark - Deprecated
 
+ASDimension ASRelativeDimensionMake(ASRelativeDimensionType type, CGFloat value)
+{
+  if (type == ASRelativeDimensionTypePoints) {
+    return ASDimensionMakeWithPoints(value);
+  } else if (type == ASRelativeDimensionTypeFractions) {
+    return ASDimensionMakeWithFraction(value);
+  }
+  
+  ASDisplayNodeCAssert(NO, @"ASRelativeDimensionMake does not support the given ASRelativeDimensionType");
+  return ASDimensionMakeWithPoints(0);
+}
+
 ASSizeRange ASSizeRangeMakeExactSize(CGSize size)
 {
   return ASSizeRangeMake(size);

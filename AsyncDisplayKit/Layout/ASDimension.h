@@ -323,6 +323,25 @@ ASDISPLAYNODE_INLINE AS_WARN_UNUSED_RESULT ASSizeRange ASLayoutElementSizeResolv
 
 #pragma mark - Deprecated
 
+/**
+ * A dimension relative to constraints to be provided in the future.
+ * A ASDimension can be one of three types:
+ *
+ * "Auto" - This indicated "I have no opinion" and may be resolved in whatever way makes most sense given the circumstances.
+ *
+ * "Points" - Just a number. It will always resolve to exactly this amount.
+ *
+ * "Percent" - Multiplied to a provided parent amount to resolve a final amount.
+ */
+typedef NS_ENUM(NSInteger, ASRelativeDimensionType) {
+  /** This indicates "I have no opinion" and may be resolved in whatever way makes most sense given the circumstances. */
+  ASRelativeDimensionTypeAuto,
+  /** Just a number. It will always resolve to exactly this amount. This is the default type. */
+  ASRelativeDimensionTypePoints,
+  /** Multiplied to a provided parent amount to resolve a final amount. */
+  ASRelativeDimensionTypeFractions,
+};
+
 #define ASRelativeDimension ASDimension
 #define ASRelativeDimensionMakeWithPoints ASDimensionMakeWithPoints
 #define ASRelativeDimensionMakeWithFraction ASDimensionMakeWithFraction
@@ -342,6 +361,10 @@ typedef struct {
 } ASRelativeSizeRange;
 
 extern ASRelativeSizeRange const ASRelativeSizeRangeUnconstrained;
+
+#pragma mark - ASRelativeDimension
+
+extern ASDimension ASRelativeDimensionMake(ASRelativeDimensionType type, CGFloat value) ASDISPLAYNODE_DEPRECATED;
 
 #pragma mark - ASRelativeSize
 
