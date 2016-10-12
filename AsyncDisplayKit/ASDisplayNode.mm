@@ -3479,6 +3479,8 @@ ASEnvironmentLayoutExtensibilityForwarding
 
 #pragma mark - Deprecated
 
+@dynamic spacingBefore, spacingAfter, flexGrow, flexShrink, flexBasis, alignSelf, ascender, descender, sizeRange, layoutPosition;
+
 - (CGSize)measure:(CGSize)constrainedSize
 {
   return [self layoutThatFits:ASSizeRangeMake(CGSizeZero, constrainedSize)].size;
@@ -3733,15 +3735,19 @@ static const char *ASDisplayNodeAssociatedNodeKey = "ASAssociatedNode";
   return self.style.layoutPosition;
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 - (void)setSizeRange:(ASRelativeSizeRange)sizeRange
 {
-  self.style.minLayoutSize = sizeRange.min;
-  self.style.maxLayoutSize = sizeRange.max;
+  self.style.sizeRange = sizeRange;
 }
 
 - (ASRelativeSizeRange)sizeRange
 {
-  return ASRelativeSizeRangeMake(self.style.minLayoutSize, self.style.maxLayoutSize);
+  return self.style.sizeRange;
 }
+
+#pragma clang diagnostic pop
 
 @end

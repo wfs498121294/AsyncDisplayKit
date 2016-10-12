@@ -354,5 +354,19 @@ do {\
   ASLayoutElementStyleCallDelegate(ASLayoutElementStyleLayoutPositionProperty);
 }
 
+
+#pragma mark Deprecated
+
+- (ASRelativeSizeRange)sizeRange
+{
+  return ASRelativeSizeRangeMake(self.minLayoutSize, self.maxLayoutSize);
+}
+
+- (void)setSizeRange:(ASRelativeSizeRange)sizeRange
+{
+  self.minLayoutSize = sizeRange.min;
+  self.maxLayoutSize = sizeRange.max;
+}
+
 @end
 

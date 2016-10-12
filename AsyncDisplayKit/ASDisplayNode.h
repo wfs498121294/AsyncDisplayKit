@@ -837,8 +837,6 @@ extern NSInteger const ASDefaultDrawingPriority;
  */
 @property (nonatomic, assign, readwrite) CGSize preferredFrameSize ASDISPLAYNODE_DEPRECATED;
 
-- (CGSize)measure:(CGSize)constrainedSize;
-
 @end
 
 /*

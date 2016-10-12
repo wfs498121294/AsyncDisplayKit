@@ -82,12 +82,6 @@
 
 #pragma mark - Layout
 
-// Deprecated
-- (ASLayout *)measureWithSizeRange:(ASSizeRange)constrainedSize
-{
-    return [self layoutThatFits:constrainedSize];
-}
-
 - (ASLayout *)layoutThatFits:(ASSizeRange)constrainedSize
 {
   return [self layoutThatFits:constrainedSize parentSize:constrainedSize.max];
@@ -233,19 +227,16 @@
   return [ASTraitCollection traitCollectionWithASEnvironmentTraitCollection:self.environmentTraitCollection];
 }
 
-- (void)setPreferredFrameSize:(CGSize)size
-{
-  self.style.preferredSize = size;
-}
+ASEnvironmentLayoutExtensibilityForwarding
 
-- (CGSize)preferredFrameSize
+#pragma mark - Deprecated
+
+@dynamic spacingBefore, spacingAfter, flexGrow, flexShrink, flexBasis, alignSelf, ascender, descender, sizeRange, layoutPosition;
+
+// Deprecated
+- (ASLayout *)measureWithSizeRange:(ASSizeRange)constrainedSize
 {
-  ASLayoutElementStyle *style = self.style;
-  if (style.width.unit == ASDimensionUnitPoints && style.height.unit == ASDimensionUnitPoints) {
-    return CGSizeMake(style.width.value, style.height.value);
-  }
-  
-  return CGSizeZero;
+  return [self layoutThatFits:constrainedSize];
 }
 
 #pragma mark - ASStackLayoutElement
@@ -337,13 +328,20 @@
   self.style.layoutPosition = layoutPosition;
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 - (void)setSizeRange:(ASRelativeSizeRange)sizeRange
 {
-  self.style.minLayoutSize = sizeRange.min;
-  self.style.maxLayoutSize = sizeRange.max;
+  self.style.sizeRange = sizeRange;
 }
 
-ASEnvironmentLayoutExtensibilityForwarding
+- (ASRelativeSizeRange)sizeRange
+{
+  return self.style.sizeRange;
+}
+
+#pragma clang diagnostic pop
 
 @end
 
