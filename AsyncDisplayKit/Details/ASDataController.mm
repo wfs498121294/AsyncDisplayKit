@@ -21,6 +21,8 @@
 #import "ASDataController+Subclasses.h"
 #import "ASDispatch.h"
 
+#import <sys/kdebug_signpost.h>
+
 //#define LOG(...) NSLog(__VA_ARGS__)
 #define LOG(...)
 
@@ -121,7 +123,7 @@ NSString * const ASDataControllerRowNodeKind = @"_ASDataControllerRowNodeKind";
 
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    parallelProcessorCount = [[NSProcessInfo processInfo] processorCount];
+    parallelProcessorCount = [[NSProcessInfo processInfo] activeProcessorCount];
   });
 
   return parallelProcessorCount;
@@ -136,6 +138,8 @@ NSString * const ASDataControllerRowNodeKind = @"_ASDataControllerRowNodeKind";
     [ASDataController _expectToInsertNodes:contexts.count];
 #endif
 
+  ASProfilingSignpostStart(2, _dataSource);
+  
   NSUInteger blockSize = [[ASDataController class] parallelProcessorCount] * kASDataControllerSizingCountPerProcessor;
   NSUInteger count = contexts.count;
   
@@ -147,6 +151,8 @@ NSString * const ASDataControllerRowNodeKind = @"_ASDataControllerRowNodeKind";
     NSArray *indexPaths = [ASIndexedNodeContext indexPathsFromContexts:batchedContexts];
     batchCompletionHandler(nodes, indexPaths);
   }
+  
+  ASProfilingSignpostEnd(2, _dataSource);
 }
 
 /**
