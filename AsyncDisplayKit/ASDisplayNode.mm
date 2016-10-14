@@ -3479,12 +3479,13 @@ ASEnvironmentLayoutExtensibilityForwarding
 
 #pragma mark - Deprecated
 
-@dynamic spacingBefore, spacingAfter, flexGrow, flexShrink, flexBasis, alignSelf, ascender, descender, sizeRange, layoutPosition;
-
 - (ASLayout *)measureWithSizeRange:(ASSizeRange)constrainedSize
 {
   return [self layoutThatFits:constrainedSize parentSize:constrainedSize.max];
 }
+
+
+ASLayoutElementStyleForwarding
 
 - (void)setPreferredFrameSize:(CGSize)preferredFrameSize
 {
@@ -3640,114 +3641,5 @@ static const char *ASDisplayNodeAssociatedNodeKey = "ASAssociatedNode";
 {
   self.automaticallyManagesSubnodes = enabled;
 }
-
-#pragma mark - ASStackLayoutElement
-
-- (void)setSpacingBefore:(CGFloat)spacingBefore
-{
-  self.style.spacingBefore = spacingBefore;
-}
-
-- (CGFloat)spacingBefore
-{
-  return self.style.spacingBefore;
-}
-
-- (void)setSpacingAfter:(CGFloat)spacingAfter
-{
-  self.style.spacingAfter = spacingAfter;
-}
-
-- (CGFloat)spacingAfter
-{
-  return self.style.spacingAfter;
-}
-
-- (void)setFlexGrow:(CGFloat)flexGrow
-{
-  self.style.flexGrow = flexGrow;
-}
-
-- (CGFloat)flexGrow
-{
-  return self.style.flexGrow;
-}
-
-- (void)setFlexShrink:(CGFloat)flexShrink
-{
-  self.style.flexShrink = flexShrink;
-}
-
-- (CGFloat)flexShrink
-{
-  return self.style.flexShrink;
-}
-
-- (void)setFlexBasis:(ASDimension)flexBasis
-{
-  self.style.flexBasis = flexBasis;
-}
-
-- (ASDimension)flexBasis
-{
-  return self.style.flexBasis;
-}
-
-- (void)setAlignSelf:(ASStackLayoutAlignSelf)alignSelf
-{
-  self.style.alignSelf = alignSelf;
-}
-
-- (ASStackLayoutAlignSelf)alignSelf
-{
-  return self.style.alignSelf;
-}
-
-- (void)setAscender:(CGFloat)ascender
-{
-  self.style.ascender = ascender;
-}
-
-- (CGFloat)ascender
-{
-  return self.style.ascender;
-}
-
-- (void)setDescender:(CGFloat)descender
-{
-  self.style.descender = descender;
-}
-
-- (CGFloat)descender
-{
-  return self.style.descender;
-}
-
-#pragma mark - ASAbsoluteLayoutElement
-
-- (void)setLayoutPosition:(CGPoint)layoutPosition
-{
-  self.style.layoutPosition = layoutPosition;
-}
-
-- (CGPoint)layoutPosition
-{
-  return self.style.layoutPosition;
-}
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-
-- (void)setSizeRange:(ASRelativeSizeRange)sizeRange
-{
-  self.style.sizeRange = sizeRange;
-}
-
-- (ASRelativeSizeRange)sizeRange
-{
-  return self.style.sizeRange;
-}
-
-#pragma clang diagnostic pop
 
 @end
